@@ -68,12 +68,13 @@ export default function App() {
       geometry: {
         type: 'Polygon',
         coordinates: [
-          [
-            [-69.6295, 44.6183],
-            [-69.5703, 44.6183],
+          [  // longitude, latitude
+            [-69.7000, 44.7800], // Upper left
+            [-69.6500, 44.7800], // Upper right
+            [-69.5783, 44.6283], // Indent
             [-69.5703, 44.5551],
             [-69.6295, 44.5551],
-            [-69.6295, 44.6183],
+            [-69.7000, 44.7800], // Upper left
           ],
         ],
       },
