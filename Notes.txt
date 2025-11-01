@@ -11,3 +11,4 @@ X - Add a circle layer
 - Update MAP_STYLE
 - Update Page Colors
 - Update map's center, zoom
+- Show town barriers

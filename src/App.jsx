@@ -82,10 +82,23 @@ export default function App() {
 
   const highlightedCircles = [
     createCircleFeature({
-      center: [-69.4237, 44.6242],
+      center: [-69.4237, 44.6242], // longitude, latitude
       radiusMeters: 4000, // ~4km radius
       properties: { name: 'Fairfield Buffer (5km)' },
-    }),
+    }
+  ),
+    createCircleFeature({
+      center: [-69.3137, 44.5742],
+      radiusMeters: 2000, // ~4km radius
+      properties: { name: 'Fairfield Buffer (5km)' },
+    }
+  ),
+  createCircleFeature({
+      center: [-69.3900, 44.5500],
+      radiusMeters: 2000, // ~4km radius
+      properties: { name: 'Fairfield Buffer (5km)' },
+    }
+  ),
   ];
 
   return (
@@ -93,6 +106,7 @@ export default function App() {
       <header className="app-header">
         <h1>PFAS Hot Zones</h1>
         <p>Zoom and pan around Maine. Click a marker to see town info.</p>
+        <p>Not Correct Data!!! Do not use for hunting!</p>
       </header>
 
       <main className="canvas-wrap">
