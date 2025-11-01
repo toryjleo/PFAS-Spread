@@ -23,17 +23,13 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Mapbox GL Demo</h1>
+        <h1>PFAS Hot Zones</h1>
         <p>Zoom and pan around Maine. Click a marker to see town info.</p>
       </header>
 
       <main className="canvas-wrap">
         <MapboxMap highlightedPlaces={highlightedTowns} />
       </main>
-
-      <footer className="app-footer">
-        <small>Supply your own Mapbox token via VITE_MAPBOX_TOKEN to see the map tiles.</small>
-      </footer>
     </div>
   );
 }
