@@ -31,7 +31,7 @@ export default function App() {
       </header>
 
       <main className="canvas-wrap">
-        <MapboxMap highlightedPlaces={highlightedPolygons} />
+        <MapboxMap highlightedPolygons={highlightedPolygons} />
       </main>
     </div>
   );

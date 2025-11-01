@@ -7,12 +7,10 @@ const MAP_STYLE = 'mapbox://styles/mapbox/light-v11';
 export default function MapboxMap({
   center = [-68.972, 44.8],
   zoom = 6,
-  highlightedPlaces = [],
+  highlightedPolygons = [],
 }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
-  // TODO: Remove markersRef and related code when highlightedPlaces is removed
-  const markersRef = useRef([]);
 
   useEffect(() => {
     // Grab token from environment variable
@@ -41,8 +39,6 @@ export default function MapboxMap({
     map.addControl(new mapboxgl.ScaleControl({ unit: 'imperial' }), 'bottom-left');
 
     return () => {
-      markersRef.current.forEach((marker) => marker.remove());
-      markersRef.current = [];
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
@@ -61,12 +57,11 @@ export default function MapboxMap({
     const addHighlight = () => {
       if (map.getLayer(layerId)) return;
 
-      // TODO: Iteration: sourceId must be unique, coordinates must be unique
       map.addSource(sourceId, {
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
-          features: highlightedPlaces, // Only adding the first polygon for now
+          features: highlightedPolygons, // Only adding the first polygon for now
         },
       });
 
@@ -122,36 +117,7 @@ export default function MapboxMap({
         map.removeSource(sourceId);
       }
     };
-  }, []);
-
-  // tODO: Remove this effect and related code when highlightedPlaces is removed
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map) return undefined;
-
-    markersRef.current.forEach((marker) => marker.remove());
-    markersRef.current = [];
-
-    highlightedPlaces.forEach(({ coordinates, name, description }) => {
-      if (!coordinates || coordinates.length !== 2) return;
-
-      const marker = new mapboxgl.Marker({ color: '#b67e17ff' })
-        .setLngLat(coordinates)
-        .setPopup(
-          new mapboxgl.Popup({ offset: 12 }).setHTML(
-            `<strong>${name ?? 'Unknown place'}</strong>${description ? `<p>${description}</p>` : ''}`,
-          ),
-        )
-        .addTo(map);
-
-      markersRef.current.push(marker);
-    });
-
-    return () => {
-      markersRef.current.forEach((marker) => marker.remove());
-      markersRef.current = [];
-    };
-  }, [highlightedPlaces]);
+  }, [highlightedPolygons]);
 
   return <div ref={containerRef} className="mapbox-map" aria-label="Map showing highlighted towns" />;
 }
