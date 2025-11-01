@@ -3,8 +3,10 @@ https://www.maine.gov/ifw/hunting-trapping/hunting/laws-rules/pfas-related-consu
 
 TODO:
 X - Remove highlightedTowns code
- - Cleanup highlightedTowns code
-- Add a circle layer
+X - Cleanup highlightedTowns code
+X - Add a circle layer
+- Review circle layer code
+- Move circle over actual area
 
 - Update MAP_STYLE
 - Update Page Colors

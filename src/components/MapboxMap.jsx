@@ -8,6 +8,7 @@ export default function MapboxMap({
   center = [-68.972, 44.8],
   zoom = 6,
   highlightedPolygons = [],
+  highlightedCircles = [],
 }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
@@ -50,74 +51,123 @@ export default function MapboxMap({
     const map = mapRef.current;
     if (!map) return undefined;
 
-    const sourceId = 'fairfield-highlight';
-    // Each layer can have a single style but multiple poligons
-    const layerId = 'fairfield-highlight-fill';
+    const polygonSourceId = 'highlight-polygons';
+    const polygonFillLayerId = 'highlight-polygons-fill';
+    const polygonOutlineLayerId = 'highlight-polygons-outline';
+    const circleSourceId = 'highlight-circles';
+    const circleFillLayerId = 'highlight-circles-fill';
+    const circleOutlineLayerId = 'highlight-circles-outline';
 
-    const addHighlight = () => {
-      if (map.getLayer(layerId)) return;
+    const ensurePolygonLayers = () => {
+      if (!map.getSource(polygonSourceId)) {
+        map.addSource(polygonSourceId, {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: highlightedPolygons,
+          },
+        });
+      }
 
-      map.addSource(sourceId, {
-        type: 'geojson',
-        data: {
+      if (!map.getLayer(polygonFillLayerId)) {
+        map.addLayer({
+          id: polygonFillLayerId,
+          type: 'fill',
+          source: polygonSourceId,
+          paint: {
+            'fill-color': '#ffcc33',
+            'fill-opacity': 0.35,
+          },
+        });
+      }
+
+      if (!map.getLayer(polygonOutlineLayerId)) {
+        map.addLayer({
+          id: polygonOutlineLayerId,
+          type: 'line',
+          source: polygonSourceId,
+          paint: {
+            'line-color': '#d48b20',
+            'line-width': 2,
+          },
+        });
+      }
+    };
+
+    const ensureCircleLayers = () => {
+      if (!map.getSource(circleSourceId)) {
+        map.addSource(circleSourceId, {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: highlightedCircles,
+          },
+        });
+      }
+
+      if (!map.getLayer(circleFillLayerId)) {
+        map.addLayer({
+          id: circleFillLayerId,
+          type: 'fill',
+          source: circleSourceId,
+          paint: {
+            'fill-color': '#ffcc33',
+            'fill-opacity': 0.25,
+          },
+        });
+      }
+
+      if (!map.getLayer(circleOutlineLayerId)) {
+        map.addLayer({
+          id: circleOutlineLayerId,
+          type: 'line',
+          source: circleSourceId,
+          paint: {
+            'line-color': '#d48b20',
+            'line-width': 1.5,
+          },
+        });
+      }
+    };
+
+    const updateSources = () => {
+      const polygonSource = map.getSource(polygonSourceId);
+      if (polygonSource) {
+        polygonSource.setData({
           type: 'FeatureCollection',
-          features: highlightedPolygons, // Only adding the first polygon for now
-        },
-      });
+          features: highlightedPolygons,
+        });
+      }
 
-      map.addLayer({
-        id: layerId,
-        type: 'fill',
-        source: sourceId,
-        paint: {
-          'fill-color': '#ffcc33',
-          'fill-opacity': 0.35,
-        },
-      });
-
-      map.addLayer({
-        id: `${layerId}-outline`,
-        type: 'line',
-        source: sourceId,
-        paint: {
-          'line-color': '#d48b20',
-          'line-width': 2,
-        },
-      });
+      const circleSource = map.getSource(circleSourceId);
+      if (circleSource) {
+        circleSource.setData({
+          type: 'FeatureCollection',
+          features: highlightedCircles,
+        });
+      }
     };
 
-    const loadHandler = () => 
-    {
-      addHighlight();
+    const addHighlightLayers = () => {
+      ensurePolygonLayers();
+      ensureCircleLayers();
+      updateSources();
     };
 
-    if (map.isStyleLoaded()) 
-    {
-      addHighlight();
-    } 
-    else 
-    {
-      // Attach a one-time load listener via map.once('load', loadHandler)
+    const loadHandler = () => {
+      addHighlightLayers();
+    };
+
+    if (map.isStyleLoaded()) {
+      addHighlightLayers();
+    } else {
       map.once('load', loadHandler);
     }
 
-    return () => 
-    {
+    return () => {
       map.off('load', loadHandler);
-      if (map.getLayer(layerId)) 
-      {
-        map.removeLayer(layerId);
-      }
-      if (map.getLayer(`${layerId}-outline`)) 
-      {
-        map.removeLayer(`${layerId}-outline`);
-      }
-      if (map.getSource(sourceId)) 
-      {
-        map.removeSource(sourceId);
-      }
     };
-  }, [highlightedPolygons]);
+  }, [highlightedPolygons, highlightedCircles]);
 
   return <div ref={containerRef} className="mapbox-map" aria-label="Map showing highlighted towns" />;
 }
