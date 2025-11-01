@@ -82,8 +82,8 @@ export default function App() {
 
   const highlightedCircles = [
     createCircleFeature({
-      center: [-69.5999, 44.5967],
-      radiusMeters: 5000, // ~5km radius
+      center: [-69.4237, 44.6242],
+      radiusMeters: 4000, // ~4km radius
       properties: { name: 'Fairfield Buffer (5km)' },
     }),
   ];
