@@ -1,2 +1,8 @@
 Locations to not hunt turkey and deer in Maine:
 https://www.maine.gov/ifw/hunting-trapping/hunting/laws-rules/pfas-related-consumption-advisory.html
+
+TODO:
+- Update MAP_STYLE
+- Update Page Colors
+- Update map's center, zoom
+- Add a circle layer

@@ -2,6 +2,8 @@ import React from 'react';
 import MapboxMap from './components/MapboxMap';
 
 export default function App() {
+
+  // TODO: Remove highlightedTowns
   const highlightedTowns = [
     {
       name: 'Portland, ME',
