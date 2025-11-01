@@ -61,28 +61,12 @@ export default function MapboxMap({
     const addHighlight = () => {
       if (map.getLayer(layerId)) return;
 
+      // TODO: Iteration: sourceId must be unique, coordinates must be unique
       map.addSource(sourceId, {
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
-          features: [
-            {
-              type: 'Feature',
-              properties: { name: 'Fairfield, ME' },
-              geometry: {
-                type: 'Polygon',
-                coordinates: [
-                  [
-                    [-69.6295, 44.6183],
-                    [-69.5703, 44.6183],
-                    [-69.5703, 44.5551],
-                    [-69.6295, 44.5551],
-                    [-69.6295, 44.6183],
-                  ],
-                ],
-              },
-            },
-          ],
+          features: highlightedPlaces, // Only adding the first polygon for now
         },
       });
 

@@ -4,22 +4,23 @@ import MapboxMap from './components/MapboxMap';
 export default function App() {
 
   // TODO: Remove highlightedTowns
-  const highlightedTowns = [
+  const highlightedPolygons = [
     {
-      name: 'Portland, ME',
-      description: 'Lobster capital and arts district on the coast.',
-      coordinates: [-70.2553, 43.6591],
-    },
-    {
-      name: 'Bangor, ME',
-      description: 'Gateway to the Maine Highlands.',
-      coordinates: [-68.7779, 44.8012],
-    },
-    {
-      name: 'Bar Harbor, ME',
-      description: 'Village on Mount Desert Island next to Acadia National Park.',
-      coordinates: [-68.2039, 44.3876],
-    },
+      type: 'Feature',
+      properties: { name: 'Fairfield, ME' },
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [-69.6295, 44.6183],
+            [-69.5703, 44.6183],
+            [-69.5703, 44.5551],
+            [-69.6295, 44.5551],
+            [-69.6295, 44.6183],
+          ],
+        ],
+      },
+    }, // Can add more polygons here following geojson format
   ];
 
   return (
@@ -30,7 +31,7 @@ export default function App() {
       </header>
 
       <main className="canvas-wrap">
-        <MapboxMap highlightedPlaces={highlightedTowns} />
+        <MapboxMap highlightedPlaces={highlightedPolygons} />
       </main>
     </div>
   );
