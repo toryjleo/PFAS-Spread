@@ -1,5 +1,6 @@
 import React from 'react';
 import MapboxMap from './components/MapboxMap';
+import { Flex, AppShell } from '@mantine/core';
 
 //#region circle helper functions
 //TODO: Move somewhere else
@@ -103,18 +104,28 @@ export default function App() {
   ];
 
   return (
-    <div className="app">
-      <header className="app-header">
+    <AppShell className="app" header={{ height: 164 }}
+    style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      
+      <AppShell.Header className="app-header">
         <h1>PFAS "Do Not Harvest" Zones</h1>
-      </header>
-      <p>Zoom and pan around Maine. Click a marker to see town info.</p>
-      <p>Not Correct Data!!! Do not use for hunting!</p>
-      <main className="canvas-wrap">
-        <MapboxMap
-          highlightedPolygons={highlightedPolygons}
-          highlightedCircles={highlightedCircles}
-        />
-      </main>
-    </div>
+        <Flex 
+          bg = "#DFDCD3"
+          mih={64}
+        >
+        </Flex>
+      </AppShell.Header>
+
+      <AppShell.Main className="app-main">
+        <p>Zoom and pan around Maine. Click a marker to see town info.</p>
+        <p>Not Correct Data!!! Do not use for hunting!</p>
+        <div className="canvas-wrap">
+          <MapboxMap 
+            highlightedPolygons={highlightedPolygons}
+            highlightedCircles={highlightedCircles}
+          />
+        </div>
+      </AppShell.Main>
+    </AppShell>
   );
 }
