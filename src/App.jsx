@@ -104,7 +104,9 @@ export default function App() {
   ];
 
   return (
-    <AppShell className="app" header={{ height: 164 }}
+    <AppShell className="app" 
+    header={{ height: 164 } }
+    main={{ padding: '0 clamp(16px, 5vw, 64px)' }}
     style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       
       <AppShell.Header className="app-header">

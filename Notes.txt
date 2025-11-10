@@ -16,11 +16,11 @@ X - Test Block out
 X - Block out my app
 
 Block out - in html
-- Green Banner
-- Tan Dropdown
-- Flex sides
-- Text area
-- Map
+X - Green Banner
+X - Tan Dropdown
+X - Flex sides
+X - Text area
+X - Map
 
 
 - Update MAP_STYLE
