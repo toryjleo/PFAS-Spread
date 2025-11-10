@@ -8,7 +8,23 @@ X - Add a circle layer
 - Review circle layer code
 - Move circle over actual area
 
+Visuals
+X - Install Mantine
+X - Swap app over to using Mantine
+X - Figure out how to block out the app
+X - Test Block out
+X - Block out my app
+
+Block out - in html
+- Green Banner
+- Tan Dropdown
+- Flex sides
+- Text area
+- Map
+
+
 - Update MAP_STYLE
 - Update Page Colors
 - Update map's center, zoom
 - Show town barriers
+- Focus on mobile look

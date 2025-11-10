@@ -105,11 +105,10 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>PFAS Hot Zones</h1>
-        <p>Zoom and pan around Maine. Click a marker to see town info.</p>
-        <p>Not Correct Data!!! Do not use for hunting!</p>
+        <h1>PFAS "Do Not Harvest" Zones</h1>
       </header>
-
+      <p>Zoom and pan around Maine. Click a marker to see town info.</p>
+      <p>Not Correct Data!!! Do not use for hunting!</p>
       <main className="canvas-wrap">
         <MapboxMap
           highlightedPolygons={highlightedPolygons}
