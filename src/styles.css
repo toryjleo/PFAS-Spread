@@ -8,10 +8,11 @@
 * { box-sizing: border-box; }
 html,body,#root { height: 100%; margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: #fff; color: var(--text); }
 
-.app { display: flex; flex-direction: column; min-height: 100vh;}
-.app-main { flex: 1; display: flex; flex-direction: column; margin: 0 auto; max-width: 80em; min-width: 61em; background: #fff;  }
-.app-header { position: relative; margin: 0; padding: 0; clear: both; height: 90px; background-color: #003F22;}
-.app-header h1 { padding: 8px 16px; }
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.app-main { flex: 1; display: flex; flex-direction: column; margin: 0 auto; max-width: 80em; min-width: 61em; padding: 0 clamp(16px, 5vw, 64px); }
+
+.app-header { position: relative; margin: 0; padding: 0; clear: both; background: #003F22;}
+.app-header h1 { padding: 8px 16px; height: 66px;}
 
 .header-bar { width: 100%; height: 14px; border-radius: 999px; background: linear-gradient(90deg, #22c55e, #16a34a); box-shadow: 0 4px 20px rgba(34,197,94,0.4); }
 .canvas-wrap { flex: 1 1 auto; background: rgba(255,255,255,0.02); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 30px rgba(2,6,23,0.6); display: grid; }

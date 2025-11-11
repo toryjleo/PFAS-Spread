@@ -9,5 +9,5 @@ import '@mantine/core/styles.css';
 const root = createRoot(document.getElementById('root'));
 root.render(
     <MantineProvider defaultColorScheme="dark">
-        <App />
+        <App/>
     </MantineProvider>);

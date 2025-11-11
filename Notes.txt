@@ -22,6 +22,11 @@ X - Flex sides
 X - Text area
 X - Map
 
+Adjustment
+- Header alignment
+- Trickle down of CSS
+- Adjust colors
+
 
 - Update MAP_STYLE
 - Update Page Colors
