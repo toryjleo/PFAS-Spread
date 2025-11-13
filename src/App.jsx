@@ -107,7 +107,23 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <h1>PFAS "Do Not Harvest" Zones</h1>
-        <Flex bg="#DFDCD3" mih={64}></Flex>
+        <Flex
+        bg="#DFDCD3"
+        mih={64}
+        align="center"
+        justify="flex-end"
+        px="md"
+        gap="sm"
+        >
+          <a
+            href="https://www.maine.gov/ifw/hunting-trapping/hunting/laws-rules/pfas-related-consumption-advisory.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            PFAS Consumption Advisory
+          </a>
+        </Flex>
+
       </header>
 
       <main className="app-main">
